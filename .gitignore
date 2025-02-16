@@ -1,0 +1,28 @@
+# Ignore build artifacts
+*.exe
+*.o
+*.out
+*.obj
+*.a
+*.so
+*.dll
+
+# Ignore IDE-specific files
+.vscode/
+*.code-workspace
+*.cbp   # Code::Blocks project files
+*.user  # User settings
+
+# Ignore CMake and build files
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+build/
+bin/
+dist/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
