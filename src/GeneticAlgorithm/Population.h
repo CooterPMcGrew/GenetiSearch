@@ -1,29 +1,30 @@
 /*
-  Population.h - Defines Population Class for Genetic Algorithm
+  Population.h - Fully Modular Genetic Algorithm
   Author: Cooter McGrew
   Date: 2025-02-16
-  Version: 1.0
-  Description: This module defines the population structure used in the
-               genetic algorithm. It maintains a collection of individuals
-               and provides methods for evaluating fitness and accessing individuals.
+  Version: 1.4
+  Description: Evolves generic unordered_map genes without knowing about agents.
 */
 
 #ifndef POPULATION_H
 #define POPULATION_H
 
 #include <vector>
-#include "BaseSpecies.h"
+#include <unordered_map>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
 
 class Population {
 private:
-    std::vector<BaseSpecies> individuals;
-    int populationSize;
+    std::vector<std::unordered_map<std::string, double>> geneticPool;  // ✅ No agent references
 
 public:
-    Population(int size);
-    void EvaluateFitness();
-    BaseSpecies& GetIndividual(int index);
-    int GetSize() const;
+    Population(std::vector<std::unordered_map<std::string, double>> initial_genes);
+    
+    std::vector<std::unordered_map<std::string, double>> Evolve();
+    void Mutate(std::unordered_map<std::string, double>& g);
+    std::unordered_map<std::string, double> Crossover(const std::unordered_map<std::string, double>& g1, const std::unordered_map<std::string, double>& g2);
 };
 
 #endif // POPULATION_H

@@ -1,20 +1,21 @@
 /*
-  BaseEnvironment.h - Abstract Environment Class
+  BaseEnvironment.h - Generic Environment for Interaction-Based Evolution
   Author: Cooter McGrew
   Date: 2025-02-16
-  Version: 1.0
-  Description: Defines a generic environment that holds entities,
-               independent of agents or genetic algorithms.
+  Version: 1.2
+  Description: Environment processes interaction signals instead of directly
+               referencing agent objects.
 */
 
 #ifndef BASE_ENVIRONMENT_H
 #define BASE_ENVIRONMENT_H
 
 #include <vector>
+#include <string>
 
 class BaseEnvironment {
-protected:
-    std::vector<void*> entities; // Generic container for any object type
+private:
+    std::vector<void*> entities; // Generic storage for all environment objects
 
 public:
     BaseEnvironment() = default;
@@ -23,8 +24,8 @@ public:
     // Adds a generic entity to the environment
     void AddEntity(void* entity);
 
-    // Returns all entities in the environment
-    const std::vector<void*>& GetEntities() const;
+    // Processes interaction signals and returns a response
+    virtual std::string ProcessSignal(const std::string& signal);
 };
 
 #endif // BASE_ENVIRONMENT_H
