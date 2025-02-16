@@ -1,37 +1,42 @@
 /*
-  Population.cpp - Implementation of Population Class for Genetic Algorithm
+  Population.cpp - Implementation of Population Class
   Author: Cooter McGrew
   Date: 2025-02-16
   Version: 1.0
-  Description: This module implements the population structure used in the
-               genetic algorithm. It initializes a population of individuals
-               and provides basic fitness evaluation.
+  Description: Detects evolvable entities within an environment and
+               applies genetic algorithms to modify them.
 */
 
 #include "Population.h"
 #include <iostream>
 
-// Constructor: Initializes a population with the given size
-Population::Population(int size) : populationSize(size) {
-    for (int i = 0; i < size; i++) {
-        individuals.push_back(BaseSpecies()); // Placeholder for actual species initialization
+// Detects which entities in an environment are evolvable
+void Population::DetectEvolvableEntities(const std::vector<void*>& entities) {
+    evolvableEntities.clear();
+    
+    for (void* entity : entities) {
+        // Check if entity supports evolution (placeholder condition)
+        if (entity != nullptr) {
+            evolvableEntities.push_back(entity);
+        }
     }
+
+    std::cout << "Detected " << evolvableEntities.size() << " evolvable entities.\n";
 }
 
-// Evaluates fitness of all individuals (To be implemented properly later)
-void Population::EvaluateFitness() {
-    std::cout << "Evaluating fitness of all individuals..." << std::endl;
-    for (auto& individual : individuals) {
-        individual.CalculateFitness(); // Assuming BaseSpecies has a CalculateFitness() function
+// Applies genetic algorithm operations to evolvable entities
+void Population::Evolve() {
+    if (evolvableEntities.empty()) {
+        std::cout << "No entities to evolve.\n";
+        return;
     }
-}
 
-// Returns a reference to an individual at the given index
-BaseSpecies& Population::GetIndividual(int index) {
-    return individuals[index];
-}
+    std::cout << "Applying genetic operations...\n";
 
-// Returns the total population size
-int Population::GetSize() const {
-    return populationSize;
+    // Placeholder logic for evolution
+    for (void* entity : evolvableEntities) {
+        // Normally we'd perform selection, crossover, and mutation here
+    }
+
+    std::cout << "Evolution step complete.\n";
 }
